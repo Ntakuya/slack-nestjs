@@ -11,3 +11,16 @@ services:
       - type: bind
         source: .
         target: /api-server
+    depends_on:
+      - db-server
+  db-server:
+    container_name: db-server
+    image: mysql:5.7.29
+    restart: always
+    ports:
+      - '3306:3306'
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: develop
+      MYSQL_USER: develop
+      MYSQL_PASSWORD: password
